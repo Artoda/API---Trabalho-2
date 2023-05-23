@@ -69,6 +69,7 @@ public class InstrutorController {
 		return new ResponseEntity<>(instrutorService.updateInstrutor(instrutor, id), HttpStatus.OK);
 	}
 	
+	
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Boolean> delInstrutor(@PathVariable Integer id) {
