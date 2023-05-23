@@ -78,4 +78,15 @@ public class Instrutor {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	@Override
+	public String toString() {
+		return "Instrutor [id_instrutor=" + id_instrutor + 
+				", rg=" + rg + 
+				", nome=" + nome + 
+				", telefone=" + telefone
+				+ ", turmas=" + turmas + "]";
+	}
+	
+	
 }

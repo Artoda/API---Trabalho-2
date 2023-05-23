@@ -16,7 +16,10 @@ public class InstrutorService {
 
 	@Autowired
 	private InstrutorRepository instrutorRepository;
-
+	
+	@Autowired 
+	EmailService emailService;
+	
 	public List<Instrutor> getAllInstrutors() {
 		return instrutorRepository.findAll();
 	}
@@ -46,7 +49,9 @@ public class InstrutorService {
 	}
 	
 	public Instrutor saveInstrutor(Instrutor instrutor) { 
-		return instrutorRepository.save(instrutor); 
+		Instrutor novoInstrutor= instrutorRepository.save(instrutor);
+		emailService.enviarEmail("romuloandriolo@hotmail.com", "Novo instrutor cadastrado!", novoInstrutor.toString());
+		return novoInstrutor;
 	}
 	
 	public Instrutor updateInstrutor(Instrutor instrutor, Integer id) { 
