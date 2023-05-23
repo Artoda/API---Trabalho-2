@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atividade1.Atividade1.dto.InstrutorDTO;
+import com.atividade1.Atividade1.dto.MessageResponseDTO;
 import com.atividade1.Atividade1.entities.Instrutor;
+import com.atividade1.Atividade1.repositories.InstrutorRepository;
 import com.atividade1.Atividade1.services.InstrutorService;
 
 @RestController
@@ -25,6 +27,9 @@ public class InstrutorController {
 
 	@Autowired
 	InstrutorService instrutorService;
+	
+	@Autowired
+	InstrutorRepository instrutorRepository;
 	
 	@GetMapping 
 	public ResponseEntity<List<Instrutor>> getAllInstrutors() {
@@ -48,8 +53,12 @@ public class InstrutorController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping
-	public ResponseEntity<Instrutor> saveInstrutor(@RequestBody Instrutor instrutor) {
-		return new ResponseEntity<>(instrutorService.saveInstrutor(instrutor), HttpStatus.CREATED);
+	public ResponseEntity<?> saveInstrutor(@RequestBody Instrutor instrutor) {
+		if (instrutorRepository.existsByRg(instrutor.getRg())) {
+			return ResponseEntity.badRequest().body(new MessageResponseDTO("Erro: Instrutor já cadastrado!"));
+		}
+		instrutorService.saveInstrutor(instrutor);
+		return ResponseEntity.ok(new MessageResponseDTO("Usuário registrado com sucesso!"));
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
