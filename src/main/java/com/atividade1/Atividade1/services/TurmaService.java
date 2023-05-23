@@ -1,10 +1,13 @@
 package com.atividade1.Atividade1.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.atividade1.Atividade1.dto.TurmaDTO;
 import com.atividade1.Atividade1.entities.Turma;
 import com.atividade1.Atividade1.repositories.TurmaRepository;
 
@@ -16,6 +19,23 @@ public class TurmaService {
 
 	public List<Turma> getAllTurmas() { 
 		return turmaRepository.findAll();
+	}
+	
+	public List<TurmaDTO> getAllTurmasDTO() { 
+		ModelMapper modelMapper = new ModelMapper();
+		
+		List<TurmaDTO> turmaDto = new ArrayList<>();
+		for(Turma turma: turmaRepository.findAll()) {
+			TurmaDTO novaTurmaDto = new TurmaDTO();
+			
+			novaTurmaDto.setNomeDisciplina(turma.getNome_disciplina());
+			novaTurmaDto.setDiaSemana(turma.getDia_semana());
+			novaTurmaDto.setNomeInstrutor(turma.getInstrutor().getNome());
+			
+			turmaDto.add(novaTurmaDto);
+		}
+		
+		return turmaDto;
 	}
 	
 	public Turma getTurmaById(Integer id) {

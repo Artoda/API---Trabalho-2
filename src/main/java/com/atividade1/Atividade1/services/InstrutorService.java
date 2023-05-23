@@ -25,8 +25,17 @@ public class InstrutorService {
 		ModelMapper modelMapper = new ModelMapper();
 		
 		List<InstrutorDTO> instrutoresDTO = new ArrayList<>();
+		
 		for(Instrutor instrutor: instrutorRepository.findAll()) {
-			instrutoresDTO.add(modelMapper.map(instrutor, InstrutorDTO.class));
+			InstrutorDTO novoInstDto = new InstrutorDTO();
+			novoInstDto.setNome(instrutor.getNome());
+			
+			if (instrutor.getTelefone() != null)
+				novoInstDto.setTelefone(instrutor.getTelefone().getNumero());
+			else
+				novoInstDto.setTelefone(null);
+			
+			instrutoresDTO.add(novoInstDto);		
 		}
 		
 		return instrutoresDTO;

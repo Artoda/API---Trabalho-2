@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.atividade1.Atividade1.dto.TurmaDTO;
 import com.atividade1.Atividade1.entities.Turma;
 import com.atividade1.Atividade1.services.TurmaService;
 
@@ -28,6 +29,11 @@ public class TurmaController {
 	@GetMapping 
 	public ResponseEntity<List<Turma>> getAllTurmas() {
 		return new ResponseEntity<>(turmaService.getAllTurmas(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/dto")
+	public ResponseEntity<List<TurmaDTO>> getAllTurmasDTO() {
+		return new ResponseEntity<>(turmaService.getAllTurmasDTO(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")

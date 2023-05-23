@@ -2,14 +2,15 @@ package com.atividade1.Atividade1.dto;
 
 public class InstrutorDTO {
 
-	private Integer rg;
+	private Integer telefone;
 	private String nome;
 
-	public Integer getRg() {
-		return rg;
+	
+	public Integer getTelefone() {
+		return telefone;
 	}
-	public void setRg(Integer rg) {
-		this.rg = rg;
+	public void setTelefone(Integer telefone) {
+		this.telefone = telefone;
 	}
 	public String getNome() {
 		return nome;
