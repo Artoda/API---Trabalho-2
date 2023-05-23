@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.atividade1.Atividade1.entities.Telefone;
 import com.atividade1.Atividade1.services.TelefoneService;
 
-import jakarta.validation.Valid;
-
 @RestController
 @RequestMapping("/telefones")
 public class TelefoneController {
@@ -43,7 +41,7 @@ public class TelefoneController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping
-	public ResponseEntity<Telefone> saveTelefone(@Valid @RequestBody Telefone telefone) {
+	public ResponseEntity<Telefone> saveTelefone(@RequestBody Telefone telefone) {
 		return new ResponseEntity<>(telefoneService.saveTelefone(telefone), HttpStatus.CREATED);
 	}
 	

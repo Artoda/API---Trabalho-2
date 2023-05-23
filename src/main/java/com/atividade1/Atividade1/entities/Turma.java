@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.*;
 
 @JsonIdentityInfo(
 		generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -25,11 +24,9 @@ public class Turma {
 	@Column(name = "id_turma")
 	private Integer id_turma;
 	
-	@NotBlank
 	@Column(name = "nome_disciplina")
 	private String nome_disciplina;
 	
-	@NotBlank
 	@Column(name = "dia_semana")
 	private String dia_semana;
 	

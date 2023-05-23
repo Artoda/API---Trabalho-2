@@ -19,8 +19,6 @@ import com.atividade1.Atividade1.dto.TurmaDTO;
 import com.atividade1.Atividade1.entities.Turma;
 import com.atividade1.Atividade1.services.TurmaService;
 
-import jakarta.validation.Valid;
-
 @RestController
 @RequestMapping("/turmas")
 public class TurmaController {
@@ -49,13 +47,13 @@ public class TurmaController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping
-	public ResponseEntity<Turma> saveTurma(@Valid @RequestBody Turma turma) {
+	public ResponseEntity<Turma> saveTurma(@RequestBody Turma turma) {
 		return new ResponseEntity<>(turmaService.saveTurma(turma), HttpStatus.CREATED);
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping
-	public ResponseEntity<Turma> updateTurma(@Valid @RequestBody Turma turma, Integer id) {
+	public ResponseEntity<Turma> updateTurma(@RequestBody Turma turma, Integer id) {
 		return new ResponseEntity<>(turmaService.updateTurma(turma, id), HttpStatus.OK);
 	}
 	

@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.*;
 
 @JsonIdentityInfo(
 		generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -25,7 +24,6 @@ public class Telefone {
 	@Column(name = "id_telefone")
 	private Integer id_telefone;
 	
-	@NotNull
 	@Column(name = "numero")
 	private Integer numero;
 	

@@ -26,12 +26,12 @@ public class Instrutor {
 	@Column(name = "id_instrutor")
 	private Integer id_instrutor;
 	
-	@NotNull
 	@Column(name = "rg")
+	@NotNull
 	private Integer rg;
 	
-	@NotBlank
 	@Column(name = "nome")
+	@NotBlank
 	private String nome;
 
 	@OneToOne(mappedBy = "instrutor")
@@ -81,4 +81,15 @@ public class Instrutor {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	@Override
+	public String toString() {
+		return "Instrutor [id_instrutor=" + id_instrutor + 
+				", rg=" + rg + 
+				", nome=" + nome + 
+				", telefone=" + telefone
+				+ ", turmas=" + turmas + "]";
+	}
+	
+	
 }
