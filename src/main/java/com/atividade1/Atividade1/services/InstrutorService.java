@@ -16,16 +16,12 @@ public class InstrutorService {
 
 	@Autowired
 	private InstrutorRepository instrutorRepository;
-	
-	@Autowired 
-	EmailService emailService;
-	
+
 	public List<Instrutor> getAllInstrutors() {
 		return instrutorRepository.findAll();
 	}
 	
 	public List<InstrutorDTO> getAllInstrutorsDTO() { 
-		ModelMapper modelMapper = new ModelMapper();
 		
 		List<InstrutorDTO> instrutoresDTO = new ArrayList<>();
 		
@@ -49,9 +45,7 @@ public class InstrutorService {
 	}
 	
 	public Instrutor saveInstrutor(Instrutor instrutor) { 
-		Instrutor novoInstrutor= instrutorRepository.save(instrutor);
-		emailService.enviarEmail("romuloandriolo@hotmail.com", "Novo instrutor cadastrado!", novoInstrutor.toString());
-		return novoInstrutor;
+		return instrutorRepository.save(instrutor); 
 	}
 	
 	public Instrutor updateInstrutor(Instrutor instrutor, Integer id) { 

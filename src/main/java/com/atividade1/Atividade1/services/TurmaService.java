@@ -3,7 +3,6 @@ package com.atividade1.Atividade1.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,6 @@ public class TurmaService {
 	}
 	
 	public List<TurmaDTO> getAllTurmasDTO() { 
-		ModelMapper modelMapper = new ModelMapper();
 		
 		List<TurmaDTO> turmaDto = new ArrayList<>();
 		for(Turma turma: turmaRepository.findAll()) {
