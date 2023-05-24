@@ -81,15 +81,23 @@ public class Instrutor {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	@Override
-	public String toString() {
-		return "Instrutor [id_instrutor=" + id_instrutor + 
-				", rg=" + rg + 
-				", nome=" + nome + 
-				", telefone=" + telefone
-				+ ", turmas=" + turmas + "]";
+	
+	public String toStringSave() {
+		return "Instrutor cadastrado com sucesso!\n"
+				+ "=================================\n"
+				+ "ID: " + id_instrutor + "\n" +
+				"RG: " + rg + "\n" +
+				"Nome: " + nome + "\n";
 	}
 	
+	public String toStringGet() {
+		return "DADOS DO INSTRUTOR\n"
+				+ "=================================\n"
+				+ "ID: " + id_instrutor + "\n" +
+				"RG: " + rg + "\n" +
+				"Nome: " + nome + "\n" +
+				"Telefone: " + ((telefone == null) ? "não cadastrado" : telefone.getNumero()) + "\n" +
+				"Total de turmas: " + (turmas.size());
+	}
 	
 }

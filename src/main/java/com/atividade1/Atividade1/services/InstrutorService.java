@@ -2,6 +2,7 @@ package com.atividade1.Atividade1.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,12 +46,18 @@ public class InstrutorService {
 	}
 	
 	public Instrutor getInstrutorById(Integer id) {
+		ModelMapper modelMapper = new ModelMapper();
+		Optional<Instrutor> novoInstrutor= instrutorRepository.findById(id);
+		Instrutor instrutorEmail = modelMapper.map(novoInstrutor, Instrutor.class);
+		
+		emailService.enviarEmail("romuloandriolo@hotmail.com", "Novo instrutor cadastrado!", instrutorEmail.toStringGet());
+		
 		return instrutorRepository.findById(id).orElse(null);
 	}
 	
 	public Instrutor saveInstrutor(Instrutor instrutor) { 
 		Instrutor novoInstrutor= instrutorRepository.save(instrutor);
-		emailService.enviarEmail("romuloandriolo@hotmail.com", "Novo instrutor cadastrado!", novoInstrutor.toString());
+		emailService.enviarEmail("romuloandriolo@hotmail.com", "Novo instrutor cadastrado!", novoInstrutor.toStringSave());
 		return novoInstrutor;
 	}
 	
